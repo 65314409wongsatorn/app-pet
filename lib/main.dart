@@ -54,13 +54,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Scaffold(
           body: TabBarView(
             children: [
-              HomeScreen(),
+              const HomeScreen(),
               FormScreen(),
             ],
           ),
-          bottomNavigationBar: TabBar(
+          bottomNavigationBar: const TabBar(
             tabs: [
-              Tab(text: "รายการธุรกรรม", icon: Icon(Icons.list),),
+              Tab(text: "สัตว์เลี้ยง", icon: Icon(Icons.list),),
               Tab(text: "เพิ่มข้อมูล", icon: Icon(Icons.add),),
             ],
           ),
