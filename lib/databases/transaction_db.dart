@@ -27,7 +27,6 @@ class TransactionDB {
       "title": statement.title,
       "owner": statement.owner, // เพิ่มฟิลด์เจ้าของ
       "breed": statement.breed, // เพิ่มฟิลด์สายพันธุ์
-      "amount": statement.amount,
       "date": statement.date.toIso8601String(),
       "imagePath": statement.imagePath // เพิ่มฟิลด์ที่อยู่ไฟล์ภาพ
     });
@@ -46,7 +45,6 @@ class TransactionDB {
       title: record['title'].toString(),
       owner: record['owner'].toString(),
       breed: record['breed'].toString(),
-      amount: double.parse(record['amount'].toString()),
       date: DateTime.parse(record['date'].toString()),
       imagePath: record['imagePath'] != null ? record['imagePath'] as String : null, // ตรวจสอบค่า
     ));

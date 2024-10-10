@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:account/provider/transaction_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, provider, child) {
           if (provider.transactions.isEmpty) {
             return const Center(
-              child: Text('ไม่มีรายการ'),
+              child: Text('ไม่มีรายการสัตว์เลี้ยง'),
             );
           } else {
             return ListView.builder(
@@ -53,9 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     leading: CircleAvatar(
                       radius: 30,
-                      child: FittedBox(
-                        child: Text('${statement.amount}'),
-                      ),
+                      backgroundImage: statement.imagePath != null 
+                          ? FileImage(File(statement.imagePath!)) 
+                          : null, // แสดงรูปภาพถ้ามี
+                      child: statement.imagePath == null 
+                          ? const Icon(Icons.pets) // แสดงไอคอนถ้าไม่มีรูป
+                          : null,
                     ),
                     trailing: IconButton(
                       icon: const Icon(Icons.delete),
