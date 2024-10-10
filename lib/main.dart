@@ -1,8 +1,9 @@
-import 'package:account/screens/form_screen.dart';
+import 'package:account/provider/PetProvider.dart';
+import 'package:account/screens/form_screen.dart'; 
 import 'package:account/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:account/provider/transaction_provider.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -11,17 +12,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) {
-          return TransactionProvider();
+          return PetProvider(); // ใช้ PetProvider
         }),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'สัตว์เลี้ยง',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
@@ -42,28 +42,28 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Provider.of<TransactionProvider>(context, listen: false).initData();
+    // ไม่ต้องเรียก initData ถ้าคุณไม่มีการใช้งาน
   }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          body: TabBarView(
-            children: [
-              const HomeScreen(),
-              FormScreen(),
-            ],
-          ),
-          bottomNavigationBar: const TabBar(
-            tabs: [
-              Tab(text: "สัตว์เลี้ยง", icon: Icon(Icons.list),),
-              Tab(text: "เพิ่มข้อมูล", icon: Icon(Icons.add),),
-            ],
-          ),
-        ));
+      length: 2,
+      child: Scaffold(
+        body: TabBarView(
+          children: [
+            const HomeScreen(), // ตรวจสอบว่า HomeScreen ใช้สำหรับสัตว์เลี้ยง
+            FormScreen(), // ตรวจสอบว่า FormScreen ถูกสร้างขึ้นสำหรับการเพิ่มสัตว์เลี้ยง
+          ],
+        ),
+        bottomNavigationBar: const TabBar(
+          tabs: [
+            Tab(text: "สัตว์เลี้ยง", icon: Icon(Icons.list)),
+            Tab(text: "เพิ่มข้อมูล", icon: Icon(Icons.add)),
+          ],
+        ),
+      ),
+    );
   }
 }
