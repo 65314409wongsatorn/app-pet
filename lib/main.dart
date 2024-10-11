@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    // ไม่ต้องเรียก initData ถ้าคุณไม่มีการใช้งาน
+    
   }
 
   @override
@@ -53,8 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         body: TabBarView(
           children: [
-            const HomeScreen(), // ตรวจสอบว่า HomeScreen ใช้สำหรับสัตว์เลี้ยง
-            FormScreen(), // ตรวจสอบว่า FormScreen ถูกสร้างขึ้นสำหรับการเพิ่มสัตว์เลี้ยง
+            const HomeScreen(), 
+            FormScreen(), 
           ],
         ),
         bottomNavigationBar: const TabBar(
